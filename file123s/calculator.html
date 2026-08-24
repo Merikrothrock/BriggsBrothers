@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sod Calculator &amp; Measuring Guide — Briggs Brothers Sod Farms</title>
+<meta name="description" content="Figure out exactly how much sod you need. Use our calculator or follow our step-by-step measuring guide for irregular yard shapes.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html">Briggs Brothers <span>Sod Farms</span></a>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="grass-types.html">Grass Types</a>
+      <a href="calculator.html">Sod Calculator</a>
+      <a href="installation-care.html">Installation &amp; Care</a>
+    </nav>
+    <div class="header-right">
+      <a class="icon-link" href="https://www.facebook.com/briggsturffarm/" target="_blank" rel="noopener" aria-label="Briggs Brothers Sod Farms on Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>
+      </a>
+      <a class="header-phone" href="tel:9136812500">913-681-2500</a>
+    </div>
+  </div>
+</header>
+
+<div class="page-banner">
+  <div class="container">
+    <h1>How Much Sod Do You Need?</h1>
+    <p>Measure your yard, plug in the numbers below, and we'll tell you exactly how much to order.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="calculator-box">
+      <div class="calc-field">
+        <label for="length">Length (feet)</label>
+        <input type="number" id="length" min="0" step="0.1" placeholder="e.g. 24">
+      </div>
+      <div class="calc-field">
+        <label for="width">Width (feet)</label>
+        <input type="number" id="width" min="0" step="0.1" placeholder="e.g. 12">
+      </div>
+      <button class="calc-btn" onclick="calculateSod()">Calculate</button>
+
+      <div class="calc-results" id="results">
+        <div class="result-row"><span>Square Feet:</span> <strong id="sqft">—</strong></div>
+        <div class="result-row"><span>Square Yards:</span> <strong id="sqyd">—</strong></div>
+        <div class="result-row"><span>Suggested Order (+10% for waste):</span> <strong id="suggested">—</strong></div>
+      </div>
+    </div>
+    <p class="calc-note">We suggest adding 5–10% to your measurements to allow for cutting and waste. Have an irregularly shaped yard? See the measuring guide below to break it into simple shapes first.</p>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow-text">Measuring Guide</span>
+      <h2>Measuring an irregularly shaped yard</h2>
+      <p>Grab a piece of paper and sketch the area to be sodded, then break it into the shapes below. Measure each section, calculate the square footage, and add them together.</p>
+    </div>
+
+    <img src="images/clip_image001.png" alt="Diagram showing how to break a yard into square, triangle, and circle shapes for measuring" style="max-width: 560px; width: 100%; display: block; margin: 0 auto 36px; border-radius: 8px; background: #fff; padding: 16px; border: 1px solid var(--line);">
+
+    <div class="shapes-grid">
+      <div class="shape-card">
+        <h3>Square or Rectangle</h3>
+        <div class="formula">Length &times; Width = Area</div>
+        <p>Example: 12 &times; 24 = 288 sq. ft.</p>
+      </div>
+      <div class="shape-card">
+        <h3>Right Triangle</h3>
+        <div class="formula">(Length &times; Width) &divide; 2 = Area</div>
+        <p>Example: (12 &times; 24) &divide; 2 = 144 sq. ft. A right triangle has one 90&deg; corner.</p>
+      </div>
+      <div class="shape-card">
+        <h3>Circle (or Half / Quarter)</h3>
+        <div class="formula">(Radius &times; Radius) &times; 3.14 = Area</div>
+        <p>Example: (6 &times; 6) &times; 3.14 = 113 sq. ft. Divide by 2 for a half circle, by 4 for a quarter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-section" id="contact">
+  <div class="container">
+    <img src="images/b8.jpg" alt="Briggs Turf Farms delivery truck" style="max-width: 420px; width: 100%; border-radius: 10px; margin: 0 auto 30px;">
+    <h2>Ready to Place Your Order?</h2>
+    <p>Call us with your measurements and we'll help you get exactly what you need.</p>
+    <a class="btn" href="tel:9136812500">Call 913-681-2500</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    &copy; 2026 Briggs Brothers Sod Farms. All rights reserved.
+    <div class="footer-social">
+      <a href="https://www.facebook.com/briggsturffarm/" target="_blank" rel="noopener">Find us on Facebook</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function calculateSod() {
+  var length = parseFloat(document.getElementById('length').value);
+  var width = parseFloat(document.getElementById('width').value);
+
+  if (isNaN(length) || isNaN(width) || length <= 0 || width <= 0) {
+    alert('Please enter a valid length and width.');
+    return;
+  }
+
+  var sqft = length * width;
+  var sqyd = sqft / 9;
+  var suggested = sqft * 1.10;
+
+  document.getElementById('sqft').textContent = sqft.toFixed(1) + ' sq. ft.';
+  document.getElementById('sqyd').textContent = sqyd.toFixed(1) + ' sq. yd.';
+  document.getElementById('suggested').textContent = suggested.toFixed(1) + ' sq. ft.';
+  document.getElementById('results').classList.add('show');
+}
+</script>
+
+</body>
+</html>
